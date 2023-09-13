@@ -1,0 +1,22 @@
+import pandas as pd
+import panel as pn
+import hvplot.pandas
+
+# Read your CSV dataset into a DataFrame (replace the URL with your dataset)
+df = pd.read_csv("https://github.com/okara4inceva/drug_discovery/raw/main/drug200.csv")
+
+# Create a Panel dashboard
+pn.extension('plotly')
+
+# Define your desired plots using hvplot
+plot1 = df.hvplot(x='Age', y='Cholesterol', by='Sex', width=400)
+plot2 = df.hvplot(x='Na_to_K', y='Drug', by='Sex', width=400)
+
+# Create a Panel app to display the plots
+app = pn.Column(
+    "# Your Dataset Visualization",
+    plot1 + plot2  # Combine the two plots horizontally
+)
+
+# Display the Panel app
+app.servable()
