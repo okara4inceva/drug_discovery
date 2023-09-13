@@ -1,0 +1,37 @@
+# Import nesessary Libraries
+
+#data manipulation and analysis library that provides data structures 
+import pandas as pd
+
+#fundamental library for numerical and scientific computing in Python
+import numpy as np
+
+#a high-level app and dashboarding solution / useful for creating interactive data dashboards and visualizations
+import panel as pn
+
+#a Python library /provides a high-level interface for creating interactive visualizations directly from DataFrames
+import hvplot.pandas
+
+# Read the CSV file into a DataFrame
+df = pd.read_csv("https://github.com/okara4inceva/drug_discovery/raw/main/drug200.csv")
+
+# Create a Panel dashboard
+pn.extension('plotly')
+
+# Define the scatter plot using hvplot
+scatter_plot = df.hvplot.scatter(
+    x='Age',
+    y='Cholesterol',
+    by='Sex',
+    width=600,
+    height=400
+)
+
+# Create a Panel app to display the scatter plot
+app = pn.Column(
+    "# Cholesterol levels across different age groups for males and females, respectively",
+    scatter_plot
+)
+
+# Display the Panel app
+app.servable()
