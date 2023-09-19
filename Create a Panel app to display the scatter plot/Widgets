@@ -1,0 +1,9 @@
+import pandas as pd
+import panel as pn
+import hvplot.pandas
+
+# Define Panel widgets
+#Age slider
+age_slider = pn.widgets.IntSlider(name='Age slider', start=20, end=80, step=1 )
+age_slider
+#Radio buttons
